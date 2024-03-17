@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Installation
+
+```bash
+$ npm install (Node.js version >= v18.17.0 is required.)
+# or
+yarn 
+```
 
 ## Getting Started
 
@@ -8,33 +14,58 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# User Listing Application
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This application fetches a list of users from the randomuser API and provides functionalities such as filtering by
+gender, searching by name, and viewing detailed user profiles.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Component Structure:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### UserList:
 
-## Learn More
+- This component fetches user data from the randomuser API.
+- It applies filters (such as gender) and handles search functionality.
+- Displays the list of users in a table format.
 
-To learn more about Next.js, take a look at the following resources:
+### UserProfileCard:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Displays detailed information about a single user.
+- Includes their name, email, profile picture, nationality, and location on a map.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Thought Process:
 
-## Deploy on Vercel
+### Separation of Concerns:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Each component has a specific responsibility, making the codebase modular and easier to maintain.
+- Reusable Components: Components like UserProfileCard can be reused in other parts of the application if needed,
+  promoting code reusability.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### API Interaction:
+
+- Utilizes client-based filtering and searching since calling the randomuser API returns different users each time.
+- Client-based approach ensures users can filter and search through the currently fetched list of users without making
+  additional API calls.
+
+### Regex Search:
+
+- Implements regex search for flexibility and efficiency.
+- Allows users to search for partial matches in both first and last names.
+
+### Componentization:
+
+- Breaks down the UI into smaller, reusable components for easier maintenance and scalability.
+- Each component focuses on a specific task, making it easier to understand and test.
+
+## Search Functionality:
+
+- Utilizes regular expressions (regex) to match the user's input against the first and last names of the users.
+- Supports partial matches for more flexible and intuitive search behavior.
+- Operates on the currently fetched list of users without making additional API calls, ensuring a smoother user
+  experience.
+
+Overall, the component structure and implementation approach prioritize maintainability, reusability, and a seamless
+user experience.
